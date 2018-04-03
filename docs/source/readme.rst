@@ -57,11 +57,11 @@ different ways of posting a transaction.
 - `commit` using the `postTransactionCommit`: the response will return after the transaction is committed to a block.
 
 By default in the docs we will use the `postTransactionCommit` as is way of
-being sure that the transaction is validated and commited to a block, so
+being sure that the transaction is validated and committed to a block, so
 there will not be any issue if you try to transfer the asset immediately.
 
 
-#### Versions 3.2.x 
+#### Versions 3.2.x
 
 For versions below 3.2, a transfer transaction looked like:
 

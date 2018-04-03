@@ -365,11 +365,8 @@ Recap: Asset Creation & Transfer
 			// Post with commit so transaction is validated and included in a block
 			return conn.postTransactionCommit(txTransferBobSigned)
 		})
-		.then(res => {
-			console.log('Response from BDB server:', res)
-			return res.id
-		})
 		.then(tx => {
+			console.log('Response from BDB server:', tx)
 			console.log('Is Bob the owner?', tx['outputs'][0]['public_keys'][0] == bob.publicKey)
 			console.log('Was Alice the previous owner?', tx['inputs'][0]['owners_before'][0] == alice.publicKey )
 		})

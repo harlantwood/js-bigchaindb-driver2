@@ -16,13 +16,23 @@ env:
     - DOCKER_COMPOSE_VERSION=1.19.0
 
 before_install:
-  - .ci/travis-before-install.sh
+
+sudo apt-get update
+sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+
+sudo rm /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+chmod +x docker-compose
+sudo mv docker-compose /usr/local/bin
 
 install:
-  - .ci/travis-install.sh
+
+docker-compose build --no-cache bigchaindb
 
 before_script:
-  - .ci/travis-before-script.sh
+
+docker-compose run --rm js-bigchaindb-driver yarn test
+
   - gem install cowsay
   - npm install -g codecov
 
